@@ -3,6 +3,7 @@ import Log from "./pages/Log";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Research from "./pages/Research";
+import Researchdetail from "./pages/Researchdetail";
 
 const routes = [
     {
@@ -20,6 +21,9 @@ const routes = [
     },{
       path: '/signup',
       component: Signup
+    },{
+      path: '/research/:id',
+      component: Researchdetail
     },
 ];
 

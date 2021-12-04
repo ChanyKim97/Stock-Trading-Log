@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import ResearchTable from "../components/ResearchTable.";
+import ResearchFavorTable from "../components/ResearchFavorTable";
 
 const Research = () =>{
     //임시정보
@@ -49,16 +50,33 @@ const Research = () =>{
         },
     ];
 
+    const [favorStocks, setFavorStocks] = useState([]);
+
+    const addFavorStock = (stock) =>{
+        setFavorStocks([
+            ...favorStocks,
+            stock
+        ]);
+    };
+
+    const removeFavorStock = (id) =>{
+        setFavorStocks(favorStocks.filter(stock=>{
+            return stock.id !== id;
+        }))
+    };
+
     const renderStocks = () =>{
         return(
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">name</th>
-                        <th scope="col">rate</th>
-                        <th scope="col">current_price</th>
-                        <th scope="col">trading_volume</th>
-                        <th scope="col">market_cap</th>
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Current Price</th>
+                        <th scope="col">Trading Volume</th>
+                        <th scope="col">Market Cap</th>
+                        <th scope="col">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,6 +91,38 @@ const Research = () =>{
             <ResearchTable
                 stock={stock}
                 key={stock.id}
+                addFavorStock={addFavorStock}
+            />
+        );
+    });
+
+    const renderFavorStocks = () =>{
+        return(
+            <table className="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Current Price</th>
+                        <th scope="col">Trading Volume</th>
+                        <th scope="col">Market Cap</th>
+                        <th scope="col">Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderFavorStocksbody}
+                </tbody>
+            </table>
+        );
+    }
+
+    const renderFavorStocksbody = favorStocks.map(stock =>{
+        return(
+            <ResearchFavorTable 
+                stock={stock}
+                key={stock.id}
+                removeFavorStock={removeFavorStock}
             />
         );
     });
@@ -81,6 +131,8 @@ const Research = () =>{
         <>
             <h1>Research</h1>
             {renderStocks()}
+            <h1>Favorite</h1>
+            {renderFavorStocks()}
         </>
     );
 }

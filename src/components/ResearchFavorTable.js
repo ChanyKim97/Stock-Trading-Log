@@ -1,22 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-const ResearchTable = ({stock, addFavorStock}) => {
+const ResearchFavorTable = ({stock, removeFavorStock}) => {
     return(
         <tr>
             <th scope="row">
                 <button 
                     type="button"
-                    class="btn btn-outline-danger" 
-                    onClick={()=>{addFavorStock({
-                        id:stock.id,
-                        name: stock.name,
-                        rate: stock.rate,
-                        current_price: stock.current_price,
-                        trading_volume: stock.trading_volume,
-                        market_cap: stock.market_cap
-                    })}}
-                >Add</button>
+                    class="btn btn-outline-primary" 
+                    onClick={()=>{removeFavorStock(stock.id)}}
+                >Delete</button>
             </th>
             <td>{stock.name}</td>
             <td>{stock.rate}</td>
@@ -28,4 +21,4 @@ const ResearchTable = ({stock, addFavorStock}) => {
     );
 };
 
-export default ResearchTable;
+export default ResearchFavorTable;
