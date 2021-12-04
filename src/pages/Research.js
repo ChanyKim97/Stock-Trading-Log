@@ -51,6 +51,7 @@ const Research = () =>{
     ];
 
     const [favorStocks, setFavorStocks] = useState([]);
+    
 
     const addFavorStock = (stock) =>{
         setFavorStocks([
