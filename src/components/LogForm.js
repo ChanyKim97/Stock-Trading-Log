@@ -68,7 +68,7 @@ const LogForm = ({addRecord}) => {
             />
             <button type="submit">기록 추가</button>
         </form>
-    );
+    )
 };
 
 export default LogForm;
